@@ -1,0 +1,117 @@
+<h1 mat-dialog-title>Settings</h1>
+
+<!-- Settings search -->
+<mat-form-field appearance="fill">
+  <mat-label>Search Settings</mat-label>
+  <input
+    matInput
+    type="text"
+    [(ngModel)]="search"
+    (ngModelChange)="onSearch($event)"
+  />
+</mat-form-field>
+<form mat-dialog-content [formGroup]="settings">
+  <!-- Target Date -->
+  <mat-form-field *ngIf="inFilter('date')" appearance="fill">
+    <mat-label>Target Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <!-- Message  -->
+  <mat-form-field *ngIf="inFilter('message')" appearance="fill">
+    <mat-label>Message</mat-label>
+    <input matInput type="text" formControlName="message" />
+  </mat-form-field>
+
+  <!-- Large Units -->
+  <section class="multi-select" [formGroup]="largeUnits">
+    <h4 *ngIf="inFilter('large units')">Large Units</h4>
+    <mat-nav-list>
+      <mat-list-item *ngIf="inFilter('centuries')">
+        <mat-checkbox formControlName="centuries">Centuries</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('decades')">
+        <mat-checkbox formControlName="decades">Decades</mat-checkbox>
+      </mat-list-item>
+    </mat-nav-list>
+  </section>
+
+  <!-- Medium Units -->
+  <section class="multi-select" [formGroup]="mediumUnits">
+    <h4 *ngIf="inFilter('medium units')">Medium Units</h4>
+    <mat-nav-list>
+      <mat-list-item *ngIf="inFilter('years')">
+        <mat-checkbox formControlName="years">Years</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('fortnights')">
+        <mat-checkbox formControlName="fortnights">Fortnights</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('months')">
+        <mat-checkbox formControlName="months">Months</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('weeks')">
+        <mat-checkbox formControlName="weeks">Weeks</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('days')">
+        <mat-checkbox formControlName="days">Days</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('hours')">
+        <mat-checkbox formControlName="hours">Hours</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('minutes')">
+        <mat-checkbox formControlName="minutes">Minutes</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('seconds')">
+        <mat-checkbox formControlName="seconds">Seconds</mat-checkbox>
+      </mat-list-item>
+    </mat-nav-list>
+  </section>
+
+  <!-- Small Units -->
+  <section class="multi-select" [formGroup]="smallUnits">
+    <h4 *ngIf="inFilter('small units')">Small Units</h4>
+    <mat-nav-list>
+      <mat-list-item *ngIf="inFilter('deciseconds')">
+        <mat-checkbox formControlName="deciseconds">Deciseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('centiseconds')">
+        <mat-checkbox formControlName="centiseconds">Centiseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('milliseconds')">
+        <mat-checkbox formControlName="milliseconds">Milliseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('microseconds')">
+        <mat-checkbox formControlName="microseconds">Microseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('nanoseconds')">
+        <mat-checkbox formControlName="nanoseconds">Nanoseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('picoseconds')">
+        <mat-checkbox formControlName="picoseconds">Picoseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('femtoseconds')">
+        <mat-checkbox formControlName="femtoseconds">Femtoseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('attoseconds')">
+        <mat-checkbox formControlName="attoseconds">Attoseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('zeptoseconds')">
+        <mat-checkbox formControlName="zeptoseconds">Zeptoseconds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item *ngIf="inFilter('yoctoseconds')">
+        <mat-checkbox formControlName="yoctoseconds">Yoctoseconds</mat-checkbox>
+      </mat-list-item>
+    </mat-nav-list>
+  </section>
+</form>
+
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="saveSettings()">
+    Save Settings
+  </button>
+  <button mat-flat-button color="primary" (click)="shareTimer()">
+    Share Timer
+  </button>
+  <button mat-button color="primary" mat-dialog-close>Close</button>
+</div>
